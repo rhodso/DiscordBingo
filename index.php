@@ -8,5 +8,9 @@
     <?php
         print("PHP is working")
     ?>
+
+    <script>
+        alert("Here's some text to show JS is working")
+    </script>
 </body>
 
