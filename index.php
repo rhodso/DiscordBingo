@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <head>
-    Test website please ignore
+    <title>Test website please ignore</title>
 </head>
 <body>
-    Hello World
+    Hello World<br>
+
+    <?php
+        print("PHP is working")
+    ?>
 </body>
+
