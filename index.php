@@ -1,88 +1,86 @@
 <html>
 
-<head>
-<style>
+    <!-- Cotrol Vars -->
+    <?php
+        $leftOffset = 10;
+        $topOffset = 50;
+        
+        $leftPadding = 5;
+        $topPadding = 5;
+        
+        $buttonWidth = 150;
+        $buttonHeight = 150;
 
-.button {background-color: #ffffff;} /* Green */
 
-</style>
-</head>
+        // ----------------
+        // Do not change anything below this line
+        $vertical = $topOffset + (5*($buttonHeight + $topPadding))
+    ?>
 
-<body>
+    <!-- Get lines from bingo DB -->
+    <?php
+        include "db.php"
+        
+        
+    ?>
+    <head>
+        <!-- Setup the style for controls -->
+        <style>
+        <?php echo "\t.button {\n\t\tposition: absolute;\n\t\tmin-height: " . $buttonHeight . "px;\n\t\tmin-width: " . $buttonWidth . "px;\n\t\twhite-space: normal;\n\t\tword-wrap: break-word;\n\t};\n"; ?>
+        </style>
+    </head>
+    <body>
+        <label for="BingoGrids">Choose a bingo grid to play: </label>
+        <select name="BingoGrids" id="bingoGridSelection" class="select" style="width: 587px">bingoGridSelection
+            <option Value="Test">Test</option>
+            <option Value="Test">Tester</option>
+            <option Value="Test">Testest</option>
+        </select>
 
+        <!-- Add some buttons -->
+        <?php
+            $topPos = $topOffset;
+            $leftPos = $leftOffset;
+            $buttonText = "Here's some text";
 
-<button onclick="changeColor(this.id, this.style.background)" id="btn1" class="button" style="background: rgb(255, 255, 255);">Button 1</button>
+            for ($i = 1; $i <= 25; $i++) {
+                echo "<button onclick=\"changeColor(this.id, this.style.background)\" id=\"btn" . $i . "\" class=\"button\" style=\"background: rgb(255, 255, 255); left: ". $leftPos. "; top: ". $topPos ."\">" . $buttonText . "</button>";
 
-<button onclick="changeColor(this.id, this.style.background)" id="btn2" class="button" style="background: rgb(255, 255, 255);">Button 2</button>
+                $leftPos += $leftPadding + $buttonWidth;
 
-<button onclick="changeColor(this.id, this.style.background)" id="btn3" class="button" style="background: rgb(255, 255, 255);">Button 3</button>
+                if($i % 5 == 0){ 
+                    echo "<br>";
+                    $leftPos = $leftOffset;
+                    $topPos += $topPadding + $buttonHeight;
+                }
+            }
+        ?>
+        <!-- Control the background colour of the buttons with JS (ew) -->
+        <script>
+        function changeColor(id, backColour) {
+            let rgb = backColour.toString();
+            if (rgb == "rgb(255, 255, 255)"){       // White
+                document.getElementById(id).style.background='#4CAF50';
+                document.getElementById(id).style.color='black';
+            }else if (rgb == "rgb(76, 175, 80)"){   // Green
+                document.getElementById(id).style.background='#ff0000';
+                document.getElementById(id).style.color='white';
+            }else if (rgb == "rgb(255, 0, 0)"){     // Red
+                document.getElementById(id).style.background='#ffffff';    
+                document.getElementById(id).style.color='black';
+            }
+            else{ // Catch all
+                document.getElementById(id).style.background='#ffffff';
+                document.getElementById(id).style.color='black';
+            }
+        }
+        </script>
 
-<button onclick="changeColor(this.id, this.style.background)" id="btn4" class="button" style="background: rgb(255, 255, 255);">Button 4</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn5" class="button" style="background: rgb(255, 255, 255);">Button 5</button>
-
-</br>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn6" class="button" style="background: rgb(255, 255, 255);">Button 6</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn7" class="button" style="background: rgb(255, 255, 255);">Button 7</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn8" class="button" style="background: rgb(255, 255, 255);">Button 8</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn9" class="button" style="background: rgb(255, 255, 255);">Button 9</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn10" class="button" style="background: rgb(255, 255, 255);">Button 10</button>
-
-</br>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn11" class="button" style="background: rgb(255, 255, 255);">Button 11</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn12" class="button" style="background: rgb(255, 255, 255);">Button 12</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn13" class="button" style="background: rgb(255, 255, 255);">Button 13</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn14" class="button" style="background: rgb(255, 255, 255);">Button 14</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn15" class="button" style="background: rgb(255, 255, 255);">Button 15</button>
-
-</br>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn16" class="button" style="background: rgb(255, 255, 255);">Button 16</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn17" class="button" style="background: rgb(255, 255, 255);">Button 17</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn18" class="button" style="background: rgb(255, 255, 255);">Button 18</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn19" class="button" style="background: rgb(255, 255, 255);">Button 19</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn20" class="button" style="background: rgb(255, 255, 255);">Button 20</button>
-
-</br>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn21" class="button" style="background: rgb(255, 255, 255);">Button 21</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn22" class="button" style="background: rgb(255, 255, 255);">Button 22</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn23" class="button" style="background: rgb(255, 255, 255);">Button 23</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn24" class="button" style="background: rgb(255, 255, 255);">Button 24</button>
-
-<button onclick="changeColor(this.id, this.style.background)" id="btn25" class="button" style="background: rgb(255, 255, 255);">Button 25</button>
-
-<script>
-
-function changeColor(id, backColour) {
-    console.log(backColour);
-    let rgb = backColour.toString();
-	if (rgb == "rgb(255, 255, 255)"){
-	document.getElementById(id).style.background='#4CAF50';
-	}else if (rgb == "rgb(76, 175, 80)"){
-	document.getElementById(id).style.background='#ff0000';
-	}else{
-	document.getElementById(id).style.background='#ffffff';
-	}
-}
-
-</script>
-</body>
+        <!-- Footer -->
+        <div style="position: absolute; top: 830px">
+            <hr>
+            <p><a href="phpliteadmin.php">Admin</a></p>
+        </div>  
+    </body>
 </html>
+
