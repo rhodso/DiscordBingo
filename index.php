@@ -1,6 +1,5 @@
 <html>
-
-    <!-- Cotrol Vars -->
+    <!-- Control Vars -->
     <?php
         $leftOffset = 10;
         $topOffset = 50;
@@ -11,31 +10,44 @@
         $buttonWidth = 150;
         $buttonHeight = 150;
 
-
         // ----------------
         // Do not change anything below this line
         $vertical = $topOffset + (5*($buttonHeight + $topPadding))
-    ?>
+    ?>    
 
-    <!-- Get lines from bingo DB -->
-    <?php
-        include "db.php"
-        
-        
-    ?>
     <head>
+        <style> body{ background-color: #181a1b; }</style>
+
         <!-- Setup the style for controls -->
         <style>
-        <?php echo "\t.button {\n\t\tposition: absolute;\n\t\tmin-height: " . $buttonHeight . "px;\n\t\tmin-width: " . $buttonWidth . "px;\n\t\twhite-space: normal;\n\t\tword-wrap: break-word;\n\t};\n"; ?>
+            
+            <?php echo "\t.button {\n\t\tposition: absolute;\n\t\tmin-height: " . $buttonHeight . "px;\n\t\tmin-width: " . $buttonWidth . "px;\n\t\twhite-space: normal;\n\t\tword-wrap: break-word;\n\t};\n"; ?>
+
         </style>
-    </head>
+    </head>    
+    
     <body>
+        <!-- Get lines from bingo DB -->
+        <?php
+            include "db.php";
+            $grids = getBingoGrids();
+
+            $lines = getLinesFromBingo(1);
+
+            $id = getIDFromName("TestList");
+        ?>
+
         <label for="BingoGrids">Choose a bingo grid to play: </label>
         <select name="BingoGrids" id="bingoGridSelection" class="select" style="width: 587px">bingoGridSelection
-            <option Value="Test">Test</option>
-            <option Value="Test">Tester</option>
-            <option Value="Test">Testest</option>
+            <option>
+            <?php
+                for($i = 0; $i < count($grids); $i++){
+                    echo "<option>" . $grids[$i] ."</option>";
+                }
+            ?>
         </select>
+
+        <div>
 
         <!-- Add some buttons -->
         <?php
@@ -55,6 +67,8 @@
                 }
             }
         ?>
+
+        </div>
         <!-- Control the background colour of the buttons with JS (ew) -->
         <script>
         function changeColor(id, backColour) {
