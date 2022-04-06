@@ -1,6 +1,7 @@
 # DiscordBingo
 
 Play bingo over the internet 
+
 What kind of bingo? You decide
 
 - Bingo for someone who's bad at Dark Souls
