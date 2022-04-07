@@ -21,7 +21,23 @@
         <!-- Setup the style for controls -->
         <style>
             
-            <?php echo "\t.button {\n\t\tposition: absolute;\n\t\tmin-height: " . $buttonHeight . "px;\n\t\tmin-width: " . $buttonWidth . "px;\n\t\twhite-space: normal;\n\t\tword-wrap: break-word;\n\t};\n"; ?>
+            <?php echo "\t.button {
+                \n\t\tposition: absolute;
+                \n\t\tmin-height: " . $buttonHeight . "px;
+                \n\t\tmin-width: " . $buttonWidth . "px;
+                \n\t\twhite-space: normal !important;
+                \n\t\tword-wrap: keep-all;
+                \n\t\ttext-align: center;
+                \n\t};
+                \n"; ?>
+
+        .buttonText {
+            display: block;
+            margin: 0;
+            white-space: normal !important;
+            word-break: break-word;
+            text-align: center;
+        }
 
         </style>
     </head>    
@@ -31,10 +47,9 @@
         <?php
             include "db.php";
             $grids = getBingoGrids();
+            $lines = getLinesFromBingo(3);
 
-            $lines = getLinesFromBingo(1);
-
-            $id = getIDFromName("TestList");
+            // $id = getIDFromName("TestList");
         ?>
 
         <label for="BingoGrids">Choose a bingo grid to play: </label>
@@ -55,8 +70,16 @@
             $leftPos = $leftOffset;
             $buttonText = "Here's some text";
 
+
+
             for ($i = 1; $i <= 25; $i++) {
-                echo "<button onclick=\"changeColor(this.id, this.style.background)\" id=\"btn" . $i . "\" class=\"button\" style=\"background: rgb(255, 255, 255); left: ". $leftPos. "; top: ". $topPos ."\">" . $buttonText . "</button>";
+                $buttonText = $lines[$i];
+
+                echo "<button onclick=\"changeColor(this.id, this.style.background)\" id=\"btn" . $i . 
+                "\" class=\"button\" style=\"white-space: normal !important; word-break: break-word; text-align: center; background: rgb(255, 255, 255); left: ". $leftPos. 
+                "; top: ". $topPos . 
+                "\"><p class=\"buttonText\" style=\"white-space: normal !important; word-break: break-word; text-align: center;\">" . $buttonText . 
+                "</p></button>";
 
                 $leftPos += $leftPadding + $buttonWidth;
 
