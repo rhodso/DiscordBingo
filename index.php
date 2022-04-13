@@ -10,7 +10,7 @@
         $buttonWidth = 150;
         $buttonHeight = 150;
 
-        $buttonTextLength = 12;
+        $buttonTextLength = 20;
 
         // ----------------
         // Do not change anything below this line
@@ -70,33 +70,14 @@
 
         <!-- Add some buttons -->
         <?php
+            
             $topPos = $topOffset;
             $leftPos = $leftOffset;
             $buttonText = "Here's some text";
 
             for ($i = 1; $i <= 25; $i++) {
-                $buttonText = $lines[$i];
-
-                // If length of $buttonText is greater than 12 characters, then do the split
-                if(strlen($buttonText) > $buttonTextLength){
-
-                    // Split into array of words
-                    $buttonTextArray = explode(" ", $buttonText);
-                    
-                    // Add a line break every 2 words
-                    for($j = 0; $j <= count($buttonTextArray); $j+=2){
-                        $buttonTextArray[$j] .= "<br>";
-                    }
-
-                    // var_dump($buttonTextArray);                
-
-                    // Recombine text into string
-                    $buttonText = "";
-                    for($j = 0; $j <= count($buttonTextArray); $j++){
-                        $buttonText .= $buttonTextArray[$j] . " ";
-                    }
-                }
-
+                $buttonText = wordwrap($lines[$i],$buttonTextLength, "<br>");
+                
                 echo "<button onclick=\"changeColor(this.id, this.style.background)\" id=\"btn" . $i . 
                 "\" class=\"button\" style=\"white-space: normal !important; word-break: break-word; text-align: center; background: rgb(255, 255, 255); left: ". $leftPos. 
                 "; top: ". $topPos . 
