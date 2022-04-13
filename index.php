@@ -15,37 +15,21 @@
         // ----------------
         // Do not change anything below this line
         $vertical = $topOffset + (5*($buttonHeight + $topPadding))
-
-        
     ?>    
 
     <head>
         <style> body{ background-color: #181a1b; }</style>
-
         <!-- Setup the style for controls -->
         <style>
-            
             <?php echo "\t.button {
                 \n\t\tposition: absolute;
                 \n\t\tmin-height: " . $buttonHeight . "px;
                 \n\t\tmin-width: " . $buttonWidth . "px;
-                \n\t\twhite-space: normal !important;
-                \n\t\tword-wrap: keep-all;
                 \n\t\ttext-align: center;
                 \n\t};
                 \n"; ?>
-
-        .buttonText {
-            display: block;
-            margin: 0;
-            white-space: normal !important;
-            word-break: break-word;
-            text-align: center;
-        }
-
         </style>
     </head>    
-    
     <body>
         <!-- Get lines from bingo DB -->
         <?php
@@ -55,7 +39,6 @@
 
             // $id = getIDFromName("TestList");
         ?>
-
         <label for="BingoGrids">Choose a bingo grid to play: </label>
         <select name="BingoGrids" id="bingoGridSelection" class="select" style="width: 587px">bingoGridSelection
             <option>
@@ -65,27 +48,29 @@
                 }
             ?>
         </select>
-
         <div>
-
         <!-- Add some buttons -->
         <?php
-            
+            // Setup controls
             $topPos = $topOffset;
             $leftPos = $leftOffset;
             $buttonText = "Here's some text";
-
+            
+            // Add each button
             for ($i = 1; $i <= 25; $i++) {
+                // Get the word text
                 $buttonText = wordwrap($lines[$i],$buttonTextLength, "<br>");
+                if($i == 13){ $buttonText = "Free space"; }
                 
+                // Echo out the actual HTML button
                 echo "<button onclick=\"changeColor(this.id, this.style.background)\" id=\"btn" . $i . 
-                "\" class=\"button\" style=\"white-space: normal !important; word-break: break-word; text-align: center; background: rgb(255, 255, 255); left: ". $leftPos. 
-                "; top: ". $topPos . 
-                "\"><p class=\"buttonText\" style=\"white-space: normal !important; word-break: break-word; text-align: center;\">" . $buttonText . 
-                "</p></button>";
+                "\" class=\"button\" style=\"background: rgb(255, 255, 255);left: ". $leftPos. 
+                "; top: ". $topPos . "\"><p>" . $buttonText . "</p></button>";
 
+                // Increment left pos
                 $leftPos += $leftPadding + $buttonWidth;
 
+                // "Carriage return" for button placement
                 if($i % 5 == 0){ 
                     echo "<br>";
                     $leftPos = $leftOffset;
@@ -93,7 +78,6 @@
                 }
             }
         ?>
-
         </div>
         <!-- Control the background colour of the buttons with JS (ew) -->
         <script>
@@ -115,7 +99,6 @@
             }
         }
         </script>
-
         <!-- Footer -->
         <div style="position: absolute; top: 830px">
             <hr>
