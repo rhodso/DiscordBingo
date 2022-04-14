@@ -36,11 +36,10 @@
         <?php
             include "db.php";
 
-            //some testing stuff
+            //setup vars
             $grids = getBingoGrids();
-            $lines = getLinesFromBingo(3);
-            // $id = getIDFromName("TestList");
-
+            $lines = array();
+            
             // Setup new grids for later
             $newGrids = getBingoGridInfo();
             
@@ -67,8 +66,8 @@
             }
         ?>
         <script>
+            //Create the JS array for storing bingos and their ids
             var bingoContent = <?php echo json_encode($newGrids); ?>;
-            // console.log(bingoContent);
         </script>
         <div>
             <label for="BingoGrids">Choose a bingo grid to play: </label>

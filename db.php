@@ -9,7 +9,7 @@
     }
 
     function getBingoGrids(){
-        //  Usnig global DB
+        //  Using global DB
         global $db;
 
         // SQL statement
@@ -33,7 +33,7 @@
     }
 
     function getBingoGridInfo(){
-        //  Usnig global DB
+        //  Using global DB
         global $db;
 
         // SQL statement
