@@ -70,7 +70,7 @@
             var bingoContent = <?php echo json_encode($newGrids); ?>;
         </script>
         <div>
-            <label for="BingoGrids">Choose a bingo grid to play: </label>
+            <label style="color: white" for="BingoGrids">Choose a bingo grid to play: </label>
             <select name="BingoGrids" id="bingoGridSelection" class="select" style="width: 500">bingoGridSelection
                 <option>
                 <?php
